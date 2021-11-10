@@ -1,0 +1,17 @@
+{
+  "name": "yakov-fain",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^16.9.4",
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.2.1"
+  }
+}

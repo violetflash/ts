@@ -31,5 +31,5 @@ const dory = new Fish("Dory");
 
 console.log(talkToPet(mike));
 console.log(talkToPet(dory));
-talkToPet({ car: true });
+// talkToPet({ car: true });
 

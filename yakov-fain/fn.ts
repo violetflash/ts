@@ -29,3 +29,5 @@ class Customer {
 }
 const cust: Customer = { name: 'Mary' };
 const pers: Person = { name: 'John' };
+
+

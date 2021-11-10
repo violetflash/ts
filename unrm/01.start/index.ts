@@ -26,3 +26,10 @@ function logTodo(id: number, title: string, completed: boolean) {
         IS todo finished: ${completed}
     `);
 }
+
+// ДЖенерик тип. Т(Type). Сначала тип указывается после имени функции, затем этот тип присваивается аргументу и
+// возвращаемому из функции типу
+const getter = <T>(attr: T): T => attr;
+getter('123').length;
+// getter(10).length;
+
