@@ -1,10 +1,11 @@
 import React from 'react';
-import {UserList} from "./components";
+import {Todos, UserList} from "./components";
 
 function App() {
   return (
     <div className="App">
       <UserList/>
+        <Todos/>
     </div>
   );
 }
