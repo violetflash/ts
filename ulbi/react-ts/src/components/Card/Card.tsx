@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export enum CardVariant {
-    outlined = "outlined",
-    primary = "primary",
-}
+// export enum CardVariant {
+//     outlined = "outlined",
+//     primary = "primary",
+// }
 
 interface CardI {
     width: string;
     height: string;
     background?: string;
-    variant?: CardVariant | undefined;
+    variant: "primary" | "outlined";
+    onClick: (num: number) => void;
 }
 
 export const Card: React.FC<CardI> = (
@@ -17,16 +18,22 @@ export const Card: React.FC<CardI> = (
         width,
         height,
         children,
+        variant,
+        onClick,
         background = "gray",
-        variant = "primary"
     }) => {
+    const [state, setState] = useState(0);
+
     return (
-        <div style={{
-            width,
-            height,
-            background: variant === 'primary' ? background : 'transparent',
-            border: "2px solid gray"
-        }}>
+        <div
+            style={{
+                width,
+                height,
+                background: variant === "outlined" ? 'transparent' : background,
+                border: variant === "outlined" ? "2px solid gray" : "none",
+            }}
+            onClick={() => onClick(state)}
+        >
             {children}
         </div>
     )
