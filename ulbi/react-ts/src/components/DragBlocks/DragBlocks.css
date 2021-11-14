@@ -1,0 +1,17 @@
+.block {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 10px;
+}
+
+.block:last-child {
+    margin: 0;
+}
+
+.block-1 {
+    background-color: lightcoral;
+}
+
+.block-2 {
+    background-color: lightseagreen;
+}

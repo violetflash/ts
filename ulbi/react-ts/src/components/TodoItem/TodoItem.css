@@ -1,0 +1,8 @@
+.todo-text {
+    padding: 10px 15px;
+    justify-content: flex-start;
+}
+
+.todo-checkbox {
+    margin-right: 15px;
+}

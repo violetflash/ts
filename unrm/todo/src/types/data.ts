@@ -5,3 +5,7 @@ export interface ITodo {
     title: string;
     completed: boolean;
 }
+
+export interface ITodoItemStyle {
+    style: { textDecoration: 'lineThrough' } | null;
+}
