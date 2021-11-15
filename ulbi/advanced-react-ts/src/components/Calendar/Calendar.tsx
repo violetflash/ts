@@ -38,7 +38,7 @@ export const Calendar: FC<EventCalendarProps> = () => {
                 footer={null}
 
             >
-                <EventForm guests={guests} />
+                <EventForm guests={guests} closeModal={handleCancel}/>
             </Modal>
         </>
     )

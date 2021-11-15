@@ -1,35 +1,60 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Button, DatePicker, Form, Input, Row, Select} from "antd";
 import s from "../LoginForm/LoginForm.module.scss";
 import {rules} from "../../utils/rules";
-import { useSelector } from '../../redux';
 import {IUser} from "../../models/IUser";
+import {IEvent} from "../../models/IEvent";
+import { useActions } from '../../utils/hooks/useActions';
+import { useSelector } from '../../redux';
 
 const {Option} = Select;
 
 interface IEventFormProps {
     guests: IUser[];
+    closeModal: () => void;
 }
 
-export const EventForm = ({guests}:IEventFormProps) => {
+export const EventForm = ({guests, closeModal}:IEventFormProps) => {
+    const [form] = Form.useForm();
+    const {setEvents} = useActions();
+    const {user} = useSelector(state => state.authReducer);
+    const {events} = useSelector(state => state.eventReducer);
+
+    // const [event, setEvent] = useState<IEvent>({
+    //     guest: "",
+    //     date: "",
+    //     description: "",
+    //     author: user.username
+    // } as IEvent);
 
     console.log(guests);
-    const onFinish = () => {
 
+    const onFinish = ({date, description, guest}: IEvent) => {
+        const event: IEvent = {
+            author: user.username,
+            date: date.toLocaleDateString(),
+            guest,
+            description
+        };
+        setEvents([...events, event]);
+        closeModal();
+        form.resetFields();
     };
 
     // const onChange = (date, dateString) => {
     //     console.log(date, dateString);
     // }
 
-    const handleSelectChange = (value: string) => {
-        console.log(`selected ${value}`);
-    }
+    // const handleSelectChange = (value: string) => {
+    //     setEvent({...event, guest: value});
+    // }
+
 
     const isLoading = false;
 
     return (
         <Form
+            form={form}
             labelCol={{ span: 8 }}
             wrapperCol={{ span: 16 }}
             initialValues={{ remember: true }}
@@ -49,14 +74,17 @@ export const EventForm = ({guests}:IEventFormProps) => {
                 name="date"
                 rules={[rules.required()]}
             >
-                <DatePicker style={{width: '100%'}}/>
+                <DatePicker
+                    style={{width: '100%'}}
+
+                />
             </Form.Item>
             <Form.Item
                 label="Выберите гостя"
                 name="guest"
                 rules={[rules.required()]}
             >
-                <Select  onChange={handleSelectChange}>
+                <Select>
                     {guests.map((guest) => (
                         <Option key={guest.username} value={guest.username}>{guest.username}</Option>
                     ))}
