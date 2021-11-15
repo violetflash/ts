@@ -2,6 +2,7 @@ import React, {FC, useState} from 'react';
 import {Button, Calendar as AntdCalendar, Modal, Row} from 'antd';
 import {IEvent} from "../../models/IEvent";
 import {EventForm} from "../EventForm/EventForm";
+import {useSelector} from "../../redux";
 
 interface EventCalendarProps {
     event: IEvent[];
@@ -9,6 +10,8 @@ interface EventCalendarProps {
 
 export const Calendar: FC<EventCalendarProps> = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const {guests} = useSelector(state => state.eventReducer);
+
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -35,7 +38,7 @@ export const Calendar: FC<EventCalendarProps> = () => {
                 footer={null}
 
             >
-                <EventForm/>
+                <EventForm guests={guests} />
             </Modal>
         </>
     )

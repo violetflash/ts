@@ -9,7 +9,7 @@ import {userService} from "../../../api";
 export const eventActionCreators = {
     setGuests: (payload: IUser[]): setGuestsAction => ({type: eventActionsTypes.SET_GUESTS, payload}),
     setEvents: (payload: IEvent[]): setEventsAction => ({type: eventActionsTypes.SET_EVENTS, payload}),
-    fetchGuests: async (dispatch: AppDispatch) => {
+    fetchGuests: () => async (dispatch: AppDispatch) => {
         try {
             const response = await userService.getUsers();
 

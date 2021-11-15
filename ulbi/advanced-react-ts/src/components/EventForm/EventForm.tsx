@@ -2,11 +2,18 @@ import React from 'react';
 import {Button, DatePicker, Form, Input, Row, Select} from "antd";
 import s from "../LoginForm/LoginForm.module.scss";
 import {rules} from "../../utils/rules";
+import { useSelector } from '../../redux';
+import {IUser} from "../../models/IUser";
 
 const {Option} = Select;
 
+interface IEventFormProps {
+    guests: IUser[];
+}
 
-export const EventForm = () => {
+export const EventForm = ({guests}:IEventFormProps) => {
+
+    console.log(guests);
     const onFinish = () => {
 
     };
@@ -50,12 +57,9 @@ export const EventForm = () => {
                 rules={[rules.required()]}
             >
                 <Select  onChange={handleSelectChange}>
-                    <Option value="jack">Jack</Option>
-                    <Option value="lucy">Lucy</Option>
-                    <Option value="disabled" disabled>
-                        Disabled
-                    </Option>
-                    <Option value="Yiminghe">yiminghe</Option>
+                    {guests.map((guest) => (
+                        <Option key={guest.username} value={guest.username}>{guest.username}</Option>
+                    ))}
                 </Select>
             </Form.Item>
             <Row justify="center">
