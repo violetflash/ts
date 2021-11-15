@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import moment from 'moment';
 import {Button, DatePicker, Form, Input, Row, Select} from "antd";
+import locale from 'antd/es/date-picker/locale/ru_RU';
 import s from "../LoginForm/LoginForm.module.scss";
 import {rules} from "../../utils/rules";
 import {IUser} from "../../models/IUser";
@@ -32,7 +34,7 @@ export const EventForm = ({guests, closeModal}:IEventFormProps) => {
     const onFinish = ({date, description, guest}: IEvent) => {
         const event: IEvent = {
             author: user.username,
-            date: date.toLocaleDateString(),
+            date: moment(date, 'YYYY-MM-DD').format('DD.MM.YYYY'),
             guest,
             description
         };
@@ -75,6 +77,7 @@ export const EventForm = ({guests, closeModal}:IEventFormProps) => {
                 rules={[rules.required()]}
             >
                 <DatePicker
+                    locale={locale}
                     style={{width: '100%'}}
 
                 />
