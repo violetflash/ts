@@ -8,6 +8,7 @@ import {IUser} from "../../models/IUser";
 import {IEvent} from "../../models/IEvent";
 import { useActions } from '../../utils/hooks/useActions';
 import { useSelector } from '../../redux';
+import {getFormattedDate} from "../../utils/functions";
 
 const {Option} = Select;
 
@@ -18,39 +19,21 @@ interface IEventFormProps {
 
 export const EventForm = ({guests, closeModal}:IEventFormProps) => {
     const [form] = Form.useForm();
-    const {setEvents} = useActions();
+    const {createEvent} = useActions();
     const {user} = useSelector(state => state.authReducer);
-    const {events} = useSelector(state => state.eventReducer);
-
-    // const [event, setEvent] = useState<IEvent>({
-    //     guest: "",
-    //     date: "",
-    //     description: "",
-    //     author: user.username
-    // } as IEvent);
-
-    console.log(guests);
 
     const onFinish = ({date, description, guest}: IEvent) => {
         const event: IEvent = {
             author: user.username,
-            date: moment(date, 'YYYY-MM-DD').format('DD.MM.YYYY'),
+            date: getFormattedDate(date),
             guest,
             description
         };
-        setEvents([...events, event]);
+
+        createEvent(event);
         closeModal();
         form.resetFields();
     };
-
-    // const onChange = (date, dateString) => {
-    //     console.log(date, dateString);
-    // }
-
-    // const handleSelectChange = (value: string) => {
-    //     setEvent({...event, guest: value});
-    // }
-
 
     const isLoading = false;
 

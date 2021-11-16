@@ -10,9 +10,15 @@ function App() {
     useEffect(() => {
         if (localStorage.getItem('auth')) {
             setAuth(true);
-            setUser({username: localStorage.getItem('user')} as IUser)
+            setUser({username: localStorage.getItem('user')} as IUser);
+
+
+            // if (localStorage.getItem('events')) {
+            //     setEvents(JSON.parse(localStorage.getItem('events') || "[]"));
+            // }
+
         }
-    }, [])
+    }, [setAuth, setUser])
 
   return (
     <div className="App">

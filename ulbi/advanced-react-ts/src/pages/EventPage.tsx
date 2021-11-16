@@ -9,13 +9,14 @@ import { IUser } from '../models/IUser';
 
 
 export const EventPage: FC = () => {
-    const {fetchGuests} = useActions();
-    const {isAuth} = useSelector(state => state.authReducer);
+    const {fetchGuests, fetchEvents} = useActions();
+    const {isAuth, user} = useSelector(state => state.authReducer);
     const navigate = useNavigate();
 
     useEffect(() => {
         fetchGuests();
-    }, [fetchGuests])
+        fetchEvents(user.username);
+    }, [fetchGuests, fetchEvents, user.username]);
 
     useEffect(() => {
         if (!isAuth) {

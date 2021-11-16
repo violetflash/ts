@@ -1,7 +1,7 @@
 import {authActions, ISetAuth, ISetError, ISetIsLoading, ISetUser} from "./types";
 import {IUser} from "../../../models/IUser";
 import {AppDispatch} from "../../store/store";
-import axios from "axios";
+
 import {userService} from "../../../api";
 
 export const AuthActionCreators = {

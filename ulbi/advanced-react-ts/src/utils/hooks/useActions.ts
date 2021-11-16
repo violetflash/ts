@@ -5,4 +5,4 @@ import {appActionCreators} from "../../redux/reducers/action-creators";
 export const useActions = () => {
     const dispatch = useDispatch();
     return bindActionCreators(appActionCreators, dispatch);
-}
+};
