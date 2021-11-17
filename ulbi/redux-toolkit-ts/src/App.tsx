@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "./utils/hooks";
 import {fetchUsers} from "./redux";
+import {Pokemons} from "./components";
 
 function App() {
     const dispatch = useAppDispatch();
@@ -23,6 +24,7 @@ function App() {
             <ul>
                 {users && users.map(user => <li key={user.id}>{user.name}</li>)}
             </ul>
+            <Pokemons/>
         </div>
     );
 }
